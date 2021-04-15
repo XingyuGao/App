@@ -40,7 +40,10 @@ def load_file(filepath, device, MAX_VOCAB_SIZE=25_000):
                                                     skip_header=True, fields=tv_datafields)
 
     # Generate vocabulary (that is, indexes)
-    TEXT.build_vocab(train, max_size = MAX_VOCAB_SIZE)
+    TEXT.build_vocab(train,
+                     max_size=MAX_VOCAB_SIZE,
+                     vectors="glove.6B.100d",
+                     unk_init=torch.Tensor.normal_)
 
     LABEL.build_vocab(train)
 
