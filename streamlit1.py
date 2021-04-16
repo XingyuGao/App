@@ -57,9 +57,6 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 #Processing the dataset by using function load_file
 TEXT, LABEL, train= load_file('data',device)
 
-#Put model in cuda if we have
-model = model.to(device)
-
 # Establishing a 2-D CNN Model
 class CNN(nn.Module):
 
@@ -128,6 +125,9 @@ model.embedding.weight.data[PAD_IDX] = torch.zeros(EMBEDDING_DIM)
 
 #Load the model I have alread traind
 model.load_state_dict(torch.load('Amazon-food3-model.pt'))
+
+#Put model in cuda if we have
+model = model.to(device)
 
 #Load spacy
 nlp = spacy.load('en_core_web_sm')
