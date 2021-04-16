@@ -55,7 +55,7 @@ BATCH_SIZE = 64
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 #Processing the dataset by using function load_file
-TEXT, LABEL, train= load_file(r'\data',device)
+TEXT, LABEL, train= load_file('/data',device)
 
 #Put model in cuda if we have
 model = model.to(device)
