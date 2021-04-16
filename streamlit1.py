@@ -9,6 +9,7 @@ from torchtext import data
 import pandas as pd
 from torchtext.legacy import data
 import torch.nn as nn
+import en_core_web_sm
 
 #Set a seed
 SEED = 1234
