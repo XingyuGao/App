@@ -38,7 +38,7 @@ def load_file(filepath, device, MAX_VOCAB_SIZE=25_000):
 
     # Read in data sets and apply parameters to process data sets, generating training, validation, and test sets
     train = data.TabularDataset.splits(path=filepath,train="Train.csv", format="csv",
-                                                    skip_header=True, fields=tv_datafields)
+                                                    skip_header=True, fields=tv_datafields)[0]
 
     # Generate vocabulary (that is, indexes)
     TEXT.build_vocab(train,
