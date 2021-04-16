@@ -32,7 +32,7 @@ LABEL = data.LabelField(dtype = torch.float)
 # A huge and corpulent function, which is used to load and process the data I processed earlier
 # In addition, I set MAX_VOCAB_SIZE because the vocabulary is so full
 # that I can only select the first 25,000 words that appear most frequently
-def load_file(filepath, MAX_VOCAB_SIZE=25_000):
+def load_file(filepath, device, MAX_VOCAB_SIZE=25_000):
     # First, set fields, the parameters to process the dataset
     tv_datafields = [("text", TEXT), ("label", LABEL)]
 
@@ -51,8 +51,14 @@ def load_file(filepath, MAX_VOCAB_SIZE=25_000):
 #Set an appropriate BATCH_SIZE, that is, the amount of training each time
 BATCH_SIZE = 64
 
+#Add device
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
 #Processing the dataset by using function load_file
-TEXT, LABEL, train= load_file(r'\data')
+TEXT, LABEL, train= load_file(r'\data',device)
+
+#Put model in cuda if we have
+model = model.to(device)
 
 # Establishing a 2-D CNN Model
 class CNN(nn.Module):
