@@ -126,7 +126,7 @@ model.embedding.weight.data[PAD_IDX] = torch.zeros(EMBEDDING_DIM)
 
 
 #Load the model I have alread traind
-model = torch.load('Amazon-food3-model.pt', map_location='cpu')
+model.load_state_dict(torch.load('Amazon-food3-model.pt'))
 
 #Load spacy
 nlp = spacy.load('en_core_web_sm')
